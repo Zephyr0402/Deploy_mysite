@@ -1,0 +1,6 @@
+- name: Install npm dependencies
+  shell: cd ~/mysite && npm install
+
+- name: Build Production React
+  shell: cd ~/mysite && npm run build
+  

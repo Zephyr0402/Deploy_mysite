@@ -1,0 +1,7 @@
+- name: Set up python virtual environment
+  shell: cd ~/mysite/flask-api && python3 -m venv venv
+
+- name: Install flask and gunicorn
+  shell: cd ~/mysite/flask-api && source venv/bin/activate && pip3 install flask gunicorn python-dotenv
+
+
