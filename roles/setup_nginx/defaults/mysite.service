@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn instance to server mysite 
+After=network.target
+
+[Service]
+User=bevis
+Group=nginx
+WorkingDirectory=/home/bevis/mysite/flask-api
+Environment="PATH=/home/bevis/mysite/flask-api/venv/bin"
+ExecStart=/home/bevis/mysite/flask-api/venv/bin/gunicorn --workers 3 --bind unix:mysite.sock -m 007 wsgi
+
+[Install]
+WantedBy=multi-user.target
