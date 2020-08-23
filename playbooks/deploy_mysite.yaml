@@ -1,6 +1,6 @@
 - name: Deploy mysite on RHEL server
-  hosts: 23.102.67.158
-  remote_user: bevis
+  hosts: 3.85.1.219
+  remote_user: ec2-user
   roles:
     - setup_os
     - setup_react
