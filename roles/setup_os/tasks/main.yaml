@@ -3,6 +3,9 @@
     name: "{{ os_packages }}"
     state: present
 
+- name: Setup git user
+  shell: git config --global user.name "Zephyr0402" && git config --global user.email "bjshenshijun@yahoo.com"
+
 - name: Clone mysite repo from GitHub
   shell: git clone https://github.com/Zephyr0402/mysite.git
 
