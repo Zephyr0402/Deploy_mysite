@@ -6,6 +6,10 @@
     name: firewalld
     state: stopped
     enabled: False
+  become: yes
+  become_user: root
+  become_method: sudo
+  ignore_errors: yes
 
 - name: Copy mysite.service to host
   copy:
@@ -14,24 +18,40 @@
     owner: root
     group: root
     mode: '0644'
+  become: yes
+  become_user: root
+  become_method: sudo
     
 - name: Reload daemon
   systemd:
     daemon_reload: yes
+  become: yes
+  become_user: root
+  become_method: sudo
+  
 
 - name: Enable & Start mysite.service
   systemd:
     name: mysite.service
     state: started
     enabled: yes
+  become: yes
+  become_user: root
+  become_method: sudo
 
 - name: Make sure Nginx is installed
   yum:
     name: nginx
     state: present
+  become: yes
+  become_user: root
+  become_method: sudo
 
 - name: Back up Nginx configration
   shell: cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak
+  become: yes
+  become_user: root
+  become_method: sudo
 
 - name: Copy new Nginx configuration to host
   copy:
@@ -40,12 +60,32 @@
     owner: root
     group: root
     mode: '0644'
+  become: yes
+  become_user: root
+  become_method: sudo
+
+- name: Copy ssl certificate directory to host
+  copy:
+    src: ./roles/setup_nginx/defaults/cert
+    dest: /etc/nginx
+    owner: root
+    group: root
+    mode: '1644'
+  become: yes
+  become_user: root
+  become_method: sudo
 
 - name: Allow the Nginx process to enter and access content
-  shell: chmod 710 /home/bevis
+  shell: usermod -a -G ec2-user nginx && chmod 710 /home/ec2-user
+  become: yes
+  become_user: root
+  become_method: sudo
 
 - name: Enable & Start Nginx
   systemd:
     name: nginx
     state: started
     enabled: yes
+  become: yes
+  become_user: root
+  become_method: sudo

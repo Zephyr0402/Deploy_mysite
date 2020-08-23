@@ -1,8 +1,8 @@
 - name: Deploy mysite on RHEL server
-  hosts: 3.85.1.219
+  hosts: aws-server
   remote_user: ec2-user
   roles:
-    - setup_os
-    - setup_react
-    - setup_flask
+   # - setup_os
+   # - setup_react
+   # - setup_flask
     - setup_nginx

@@ -1,3 +1,11 @@
+- name: Install Nodejs
+  yum: 
+    name: nodejs
+    state: present
+  become: yes
+  become_user: root
+  become_method: sudo
+
 - name: Install npm dependencies
   shell: cd ~/mysite && npm install
 

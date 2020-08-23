@@ -2,6 +2,9 @@
   yum: 
     name: "{{ os_packages }}"
     state: present
+  become: yes
+  become_user: root
+  become_method: sudo
 
 - name: Setup git user
   shell: git config --global user.name "Zephyr0402" && git config --global user.email "bjshenshijun@yahoo.com"
@@ -13,3 +16,6 @@
   yum:
     name: nginx
     state: present
+  become: yes
+  become_user: root
+  become_method: sudo
