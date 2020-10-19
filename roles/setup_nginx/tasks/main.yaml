@@ -75,11 +75,11 @@
   become_user: root
   become_method: sudo
 
-- name: Allow the Nginx process to enter and access content
-  shell: usermod -a -G ec2-user nginx && chmod 710 /home/ec2-user
-  become: yes
-  become_user: root
-  become_method: sudo
+#- name: Allow the Nginx process to enter and access content
+#  shell: usermod -a -G ec2-user nginx && chmod 710 /home/ec2-user
+#  become: yes
+#  become_user: root
+#  become_method: sudo
 
 - name: Enable & Start Nginx
   systemd:

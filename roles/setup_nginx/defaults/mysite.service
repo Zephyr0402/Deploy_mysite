@@ -3,11 +3,11 @@ Description=Gunicorn instance to server mysite
 After=network.target
 
 [Service]
-User=ec2-user
+User=root
 Group=nginx
-WorkingDirectory=/home/ec2-user/mysite/flask-api
-Environment="PATH=/home/ec2-user/mysite/flask-api/venv/bin"
-ExecStart=/home/ec2-user/mysite/flask-api/venv/bin/gunicorn --workers 3 --bind unix:mysite.sock -m 007 wsgi
+WorkingDirectory=/root/mysite/flask-api
+Environment="PATH=/root/mysite/flask-api/venv/bin"
+ExecStart=/root/mysite/flask-api/venv/bin/gunicorn --workers 3 --bind unix:mysite.sock -m 007 wsgi
 
 [Install]
 WantedBy=multi-user.target
