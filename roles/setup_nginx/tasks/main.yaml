@@ -84,7 +84,7 @@
 - name: Enable & Start Nginx
   systemd:
     name: nginx
-    state: started
+    state: restarted
     enabled: yes
   become: yes
   become_user: root
